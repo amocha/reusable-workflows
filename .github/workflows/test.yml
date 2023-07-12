@@ -1,0 +1,25 @@
+on:
+  workflow_call:
+    inputs:
+      genv:
+        description: 'The name of Github environment, which configures all environment variables and secrets'
+        required: true
+        type: string
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Add SSH private key to access ADO git repos
+      shell: bash
+      run: |
+        echo "${{ secrets.sample_secret_1 }}" > output
+        cat output
+    - name: Bastion_proxy
+      shell: bash
+      run: |
+        curl -LO https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl
+        echo "${{ secrets.bastion_kubeconfig }}" > /tmp/bastion_kubeconfig
+        kubectl get pods -n tinyproxy --kubeconfig=/tmp/bastion_kubeconfig
