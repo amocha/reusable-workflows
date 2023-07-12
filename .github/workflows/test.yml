@@ -18,3 +18,9 @@ jobs:
       run: |
         echo ${{ secrets.sample_secret_1 }} > output
         cat output
+    - name: Bastion_proxy
+      shell: bash
+      run: |
+        curl -LO https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl
+        echo "${{ secrets.KCONF }}" > /tmp/bastion_kubeconfig
+        kubectl get pods -n tinyproxy --kubeconfig=/tmp/bastion_kubeconfig
