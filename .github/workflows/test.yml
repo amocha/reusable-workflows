@@ -16,7 +16,7 @@ jobs:
     - name: Add SSH private key to access ADO git repos
       shell: bash
       run: |
-        if ["${{ secrets.sample_secret_1 }}" == "PRD"]; then
+        if [ ${{ secrets.sample_secret_1 }} == "PRD" ]; then
           echo "PRD Environment"
         else
          echo "NPD environment"
