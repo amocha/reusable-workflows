@@ -17,7 +17,7 @@ jobs:
       shell: bash
       run: |
         if [ ${{ secrets.sample_secret_1 }} == "PRD" ]; then
-          echo "PRD Environment"
+          echo "Hello Environment"
         else
-         echo "NPD environment"
+         echo "Hi environment"
         fi
