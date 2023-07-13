@@ -5,8 +5,8 @@ on:
           description: 'The name of Github environment, which configures all environment variables and secrets'
           required: true
           type: string
-  
-  jobs:
+
+jobs:
     test-secret:
         uses: amocha/reusable-workflows/.github/workflows/test.yml@main
         with:
