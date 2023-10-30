@@ -12,4 +12,9 @@ jobs:
         with:
              genv: ${{ inputs.genv }}
         secrets: inherit
-  
+    test-secret-2:
+        uses: amocha/reusable-workflows/.github/workflows/test.yml@main
+        if: ${{ needs.test-secret.result == 'success' }}
+        with:
+             genv: ${{ inputs.genv }}
+        secrets: inherit
